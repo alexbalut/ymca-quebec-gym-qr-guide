@@ -1,0 +1,9 @@
+"use client";
+
+export function PrintActions() {
+  return (
+    <button type="button" className="btn btn-primary" onClick={() => window.print()}>
+      Print / Save as PDF
+    </button>
+  );
+}

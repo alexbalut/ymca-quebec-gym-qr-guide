@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500" role="img" aria-label="Setup angle placeholder">
+  <rect width="800" height="500" fill="#111827"/>
+  <rect x="80" y="70" width="640" height="360" rx="20" fill="#1f2937" stroke="#4b5563" stroke-width="3"/>
+  <path d="M200 340 L320 180 L480 180 L600 340 Z" fill="#374151" stroke="#9ca3af" stroke-width="2"/>
+  <circle cx="400" cy="250" r="36" fill="#6b7280"/>
+  <text x="400" y="460" text-anchor="middle" fill="#9ca3af" font-family="system-ui,sans-serif" font-size="22">Setup angle</text>
+</svg>

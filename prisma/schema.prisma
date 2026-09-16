@@ -1,0 +1,77 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Gym {
+  id             String    @id @default(cuid())
+  name           String
+  slug           String    @unique
+  tagline        String?
+  primaryColor   String    @default("#0ea5e9")
+  secondaryColor String    @default("#0f172a")
+  logoUrl        String?
+  city           String?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  users          User[]
+  machines       Machine[]
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  name         String
+  role         String   @default("ADMIN")
+  gymId        String
+  gym          Gym      @relation(fields: [gymId], references: [id], onDelete: Cascade)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Machine {
+  id            String        @id @default(cuid())
+  gymId         String
+  gym           Gym           @relation(fields: [gymId], references: [id], onDelete: Cascade)
+  nameEn        String
+  nameFr        String
+  slug          String
+  token         String        @unique
+  category      String
+  descriptionEn String?
+  descriptionFr String?
+  stepsEn       String        // JSON array of strings
+  stepsFr       String
+  tipsEn        String?       // JSON array
+  tipsFr        String?
+  warningsEn    String?       // JSON array
+  warningsFr    String?
+  muscleGroups  String?       // comma-separated
+  imageUrls     String?       // JSON array of up to 3 image URLs
+  active        Boolean       @default(true)
+  viewCount     Int           @default(0)
+  sortOrder     Int           @default(0)
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  issues        IssueReport[]
+
+  @@unique([gymId, slug])
+  @@index([token])
+  @@index([gymId])
+}
+
+model IssueReport {
+  id        String   @id @default(cuid())
+  machineId String
+  machine   Machine  @relation(fields: [machineId], references: [id], onDelete: Cascade)
+  note      String
+  status    String   @default("OPEN") // OPEN | RESOLVED
+  createdAt DateTime @default(now())
+
+  @@index([machineId])
+}

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500" role="img" aria-label="Detail shot placeholder">
+  <rect width="800" height="500" fill="#0b1220"/>
+  <ellipse cx="400" cy="240" rx="220" ry="140" fill="#1e293b" stroke="#64748b" stroke-width="3"/>
+  <rect x="340" y="180" width="120" height="120" rx="16" fill="#334155"/>
+  <text x="400" y="450" text-anchor="middle" fill="#94a3b8" font-family="system-ui,sans-serif" font-size="22">Detail shot</text>
+</svg>
