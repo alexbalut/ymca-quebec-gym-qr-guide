@@ -16,8 +16,8 @@ export default async function EditMachinePage({ params }: Props) {
   return (
     <main className="mx-auto max-w-4xl px-4 py-8">
       <h1 className="text-3xl font-bold mb-2">Edit machine</h1>
-      <p className="text-slate-400 mb-6">
-        {m.nameEn} · token <code className="text-yellow-300">{m.token}</code>
+      <p className="text-muted mb-6">
+        {m.nameEn} · token <code className="text-[var(--accent)]">{m.token}</code>
       </p>
       <MachineForm
         machineId={m.id}

@@ -40,7 +40,7 @@ export default function AdminLoginPage() {
         <form onSubmit={onSubmit} className="card w-full max-w-md p-6 space-y-4">
           <div>
             <h1 className="text-2xl font-bold">Staff login</h1>
-            <p className="text-sm text-slate-400 mt-1">YMCA Notre-Dame-de-Grâce</p>
+            <p className="text-sm text-muted mt-1">YMCA Notre-Dame-de-Grâce</p>
           </div>
           <label className="block">
             <span className="label">Email</span>
@@ -64,15 +64,15 @@ export default function AdminLoginPage() {
               autoComplete="current-password"
             />
           </label>
-          {error && <p className="text-rose-300 text-sm">{error}</p>}
+          {error && <p className="text-[var(--danger)] text-sm">{error}</p>}
           <button type="submit" className="btn btn-primary w-full" disabled={loading}>
             {loading ? "Signing in…" : "Sign in"}
           </button>
-          <p className="text-xs text-slate-500 text-center">
+          <p className="text-xs text-muted text-center">
             Demo: admin@ymca-quebec.demo / demo1234
           </p>
-          <p className="text-xs text-slate-500 text-center">
-            <Link href="/" className="hover:text-yellow-300">
+          <p className="text-xs text-muted text-center">
+            <Link href="/" className="hover:text-[var(--accent)]">
               ← Back to gym home
             </Link>
           </p>

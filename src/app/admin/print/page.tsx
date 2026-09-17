@@ -30,7 +30,7 @@ export default async function PrintSheetPage() {
       <div className="no-print flex flex-wrap items-center justify-between gap-4 mb-6">
         <div>
           <h1 className="text-3xl font-bold">Printable QR sheet</h1>
-          <p className="text-slate-400 mt-1">
+          <p className="text-muted mt-1">
             Cut and stick on machines. Uses opaque /q/token URLs.
           </p>
         </div>
@@ -39,7 +39,7 @@ export default async function PrintSheetPage() {
 
       <div className="mb-6 print:mb-4">
         <h2 className="text-xl font-semibold">{gym?.name}</h2>
-        <p className="text-sm text-slate-400 print:text-black">
+        <p className="text-sm text-muted print:text-black">
           Scan for EN/FR how-to guides · {cards.length} machines
         </p>
       </div>
@@ -53,11 +53,11 @@ export default async function PrintSheetPage() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={m.dataUrl} alt={`QR ${m.nameEn}`} className="w-40 h-40 print:w-36 print:h-36" />
             <p className="mt-3 font-semibold leading-tight">{m.nameEn}</p>
-            <p className="text-xs text-slate-400 print:text-slate-600">{m.nameFr}</p>
+            <p className="text-xs text-muted print:text-slate-600">{m.nameFr}</p>
             <p className="mt-1 badge print:border-slate-300 print:text-slate-700 print:bg-slate-100">
               {m.category}
             </p>
-            <p className="mt-2 text-[10px] font-mono text-slate-500 break-all print:text-slate-600">
+            <p className="mt-2 text-[10px] font-mono text-muted break-all print:text-slate-600">
               {m.token}
             </p>
           </div>

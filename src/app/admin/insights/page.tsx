@@ -41,14 +41,14 @@ export default async function InsightsPage() {
     <main className="mx-auto max-w-6xl px-4 py-8">
       <div className="mb-8">
         <h1 className="text-3xl font-bold">Owner ROI insights</h1>
-        <p className="text-slate-400 mt-1">
+        <p className="text-muted mt-1">
           {gym.name} · real usage from QR scans &amp; member reports
         </p>
       </div>
 
       <div className="card p-5 mb-8 border-yellow-400/20 bg-yellow-400/5">
         <p className="text-sm font-semibold text-yellow-200 mb-1">Pitch language</p>
-        <p className="text-slate-200 leading-relaxed">
+        <p className="text-navy leading-relaxed">
           Scans = guided members; open issues = maintenance backlog. Resolved reports show
           staff follow-through. Zero-view machines are content gaps — add photos or promote
           those QR stickers on the floor.
@@ -57,24 +57,24 @@ export default async function InsightsPage() {
 
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         <div className="card p-4">
-          <p className="text-xs uppercase tracking-wider text-slate-400">Total machine views</p>
+          <p className="text-xs uppercase tracking-wider text-muted">Total machine views</p>
           <p className="text-3xl font-bold mt-1 tabular-nums">{totalViews}</p>
-          <p className="text-xs text-slate-500 mt-1">Sum of viewCount across machines</p>
+          <p className="text-xs text-muted mt-1">Sum of viewCount across machines</p>
         </div>
         <div className="card p-4">
-          <p className="text-xs uppercase tracking-wider text-slate-400">Open issues</p>
-          <p className="text-3xl font-bold mt-1 tabular-nums text-amber-300">{openIssues}</p>
-          <p className="text-xs text-slate-500 mt-1">Maintenance backlog</p>
+          <p className="text-xs uppercase tracking-wider text-muted">Open issues</p>
+          <p className="text-3xl font-bold mt-1 tabular-nums text-[#8a6116]">{openIssues}</p>
+          <p className="text-xs text-muted mt-1">Maintenance backlog</p>
         </div>
         <div className="card p-4">
-          <p className="text-xs uppercase tracking-wider text-slate-400">Resolved issues</p>
-          <p className="text-3xl font-bold mt-1 tabular-nums text-emerald-300">{resolvedIssues}</p>
-          <p className="text-xs text-slate-500 mt-1">Closed by staff</p>
+          <p className="text-xs uppercase tracking-wider text-muted">Resolved issues</p>
+          <p className="text-3xl font-bold mt-1 tabular-nums text-[var(--ok)]">{resolvedIssues}</p>
+          <p className="text-xs text-muted mt-1">Closed by staff</p>
         </div>
         <div className="card p-4">
-          <p className="text-xs uppercase tracking-wider text-slate-400">Machines tracked</p>
+          <p className="text-xs uppercase tracking-wider text-muted">Machines tracked</p>
           <p className="text-3xl font-bold mt-1 tabular-nums">{machines.length}</p>
-          <p className="text-xs text-slate-500 mt-1">{zeroViewMachines.length} with 0 views</p>
+          <p className="text-xs text-muted mt-1">{zeroViewMachines.length} with 0 views</p>
         </div>
       </div>
 
@@ -82,11 +82,11 @@ export default async function InsightsPage() {
         <section className="card overflow-hidden">
           <div className="px-4 py-3 border-b border-border">
             <h2 className="font-semibold">Top machines by views</h2>
-            <p className="text-xs text-slate-500">Most-scanned guides — proof of member engagement</p>
+            <p className="text-xs text-muted">Most-scanned guides — proof of member engagement</p>
           </div>
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
-              <thead className="text-left text-slate-400 border-b border-border bg-slate-950/40">
+              <thead className="text-left text-muted border-b border-border bg-[var(--wash)]">
                 <tr>
                   <th className="px-4 py-2 font-medium">#</th>
                   <th className="px-4 py-2 font-medium">Machine</th>
@@ -96,19 +96,19 @@ export default async function InsightsPage() {
               <tbody>
                 {topMachines.map((m, i) => (
                   <tr key={m.id} className="border-b border-border/60 last:border-0">
-                    <td className="px-4 py-2.5 text-slate-500 tabular-nums">{i + 1}</td>
+                    <td className="px-4 py-2.5 text-muted tabular-nums">{i + 1}</td>
                     <td className="px-4 py-2.5">
-                      <Link href={`/q/${m.token}`} className="font-medium hover:text-yellow-300">
+                      <Link href={`/q/${m.token}`} className="font-medium hover:text-[var(--accent)]">
                         {m.nameEn}
                       </Link>
-                      <div className="text-xs text-slate-500">{m.category}</div>
+                      <div className="text-xs text-muted">{m.category}</div>
                     </td>
                     <td className="px-4 py-2.5 tabular-nums font-semibold">{m.viewCount}</td>
                   </tr>
                 ))}
                 {topMachines.length === 0 && (
                   <tr>
-                    <td colSpan={3} className="px-4 py-8 text-center text-slate-400">
+                    <td colSpan={3} className="px-4 py-8 text-center text-muted">
                       No views yet — scan a QR to start the counter.
                     </td>
                   </tr>
@@ -121,12 +121,12 @@ export default async function InsightsPage() {
         <section className="card overflow-hidden">
           <div className="px-4 py-3 border-b border-border">
             <h2 className="font-semibold">Content gap — 0 views</h2>
-            <p className="text-xs text-slate-500">
+            <p className="text-xs text-muted">
               Machines members have never opened — opportunity to improve discoverability
             </p>
           </div>
           {zeroViewMachines.length === 0 ? (
-            <p className="px-4 py-8 text-center text-slate-400 text-sm">
+            <p className="px-4 py-8 text-center text-muted text-sm">
               Every machine has at least one view. Nice coverage.
             </p>
           ) : (
@@ -135,7 +135,7 @@ export default async function InsightsPage() {
                 <li key={m.id} className="px-4 py-3 flex items-center justify-between gap-3">
                   <div>
                     <p className="font-medium">{m.nameEn}</p>
-                    <p className="text-xs text-slate-500">
+                    <p className="text-xs text-muted">
                       {m.category}
                       {!m.active ? " · Hidden" : ""}
                     </p>
@@ -153,9 +153,9 @@ export default async function InsightsPage() {
         </section>
       </div>
 
-      <p className="mt-8 text-sm text-slate-500">
+      <p className="mt-8 text-sm text-muted">
         Looking for the issue inbox?{" "}
-        <Link href="/admin/issues" className="text-yellow-300 hover:underline">
+        <Link href="/admin/issues" className="text-[var(--accent)] hover:underline">
           Open issues
         </Link>
       </p>

@@ -155,7 +155,7 @@ export function MachineForm({
             onChange={(e) => set("sortOrder", Number(e.target.value))}
           />
         </Field>
-        <label className="flex items-center gap-2 md:col-span-2 text-sm text-slate-300">
+        <label className="flex items-center gap-2 md:col-span-2 text-sm text-body">
           <input
             type="checkbox"
             checked={values.active}
@@ -174,7 +174,7 @@ export function MachineForm({
             placeholder="https://… or /placeholders/machine-1.svg (one per line)"
           />
         </Field>
-        <p className="text-xs text-slate-500 mt-2">
+        <p className="text-xs text-muted mt-2">
           HTTPS or relative paths (e.g. /placeholders/…). Shown above steps on the member guide.
         </p>
       </div>
@@ -244,7 +244,7 @@ export function MachineForm({
       </div>
 
       {error && (
-        <p className="text-rose-300 text-sm border border-rose-400/30 rounded-lg px-3 py-2 bg-rose-400/10">
+        <p className="text-[var(--danger)] text-sm border border-rose-400/30 rounded-lg px-3 py-2 bg-rose-400/10">
           {error}
         </p>
       )}

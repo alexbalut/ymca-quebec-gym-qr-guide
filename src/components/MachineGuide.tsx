@@ -125,7 +125,7 @@ export function MachineGuide({
   }
 
   return (
-    <div className="mx-auto max-w-2xl px-4 py-6">
+    <div className="mx-auto max-w-2xl px-4 py-6" style={{ ["--accent" as string]: gymColor, ["--accent-hover" as string]: gymColor }}>
       <div className="flex items-center justify-between gap-3 mb-5">
         <div>
           <p className="text-xs uppercase tracking-wider" style={{ color: gymColor }}>
@@ -133,21 +133,9 @@ export function MachineGuide({
           </p>
           <h1 className="text-3xl font-bold tracking-tight">{data.name}</h1>
         </div>
-        <div className="flex rounded-xl border border-border overflow-hidden text-sm font-semibold">
-          <button
-            type="button"
-            onClick={() => setLang("en")}
-            className={`px-3 py-1.5 ${lang === "en" ? "bg-yellow-400 text-black" : "bg-slate-900 text-slate-300"}`}
-          >
-            EN
-          </button>
-          <button
-            type="button"
-            onClick={() => setLang("fr")}
-            className={`px-3 py-1.5 ${lang === "fr" ? "bg-yellow-400 text-black" : "bg-slate-900 text-slate-300"}`}
-          >
-            FR
-          </button>
+        <div className="seg shrink-0" role="group" aria-label="Language">
+          <button type="button" onClick={() => setLang("en")} className={`seg-btn ${lang === "en" ? "seg-btn-active" : ""}`}>EN</button>
+          <button type="button" onClick={() => setLang("fr")} className={`seg-btn ${lang === "fr" ? "seg-btn-active" : ""}`}>FR</button>
         </div>
       </div>
 
@@ -158,7 +146,7 @@ export function MachineGuide({
             {copy.muscles}: {data.muscleGroups}
           </span>
         )}
-        <span className="badge !bg-slate-400/10 !text-slate-300 !border-slate-400/20">
+        <span className="badge !bg-slate-400/10 !text-body !border-slate-400/20">
           {data.viewCount} {copy.views}
         </span>
       </div>
@@ -170,7 +158,7 @@ export function MachineGuide({
             {imageUrls!.map((src, i) => (
               <div
                 key={`${src}-${i}`}
-                className="snap-center shrink-0 w-[min(100%,320px)] aspect-[16/10] rounded-2xl overflow-hidden border border-border bg-slate-900"
+                className="snap-center shrink-0 w-[min(100%,320px)] aspect-[16/10] rounded-2xl overflow-hidden border border-border bg-[var(--wash)]"
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
@@ -184,19 +172,19 @@ export function MachineGuide({
           </div>
         </div>
       ) : (
-        <div className="mb-6 rounded-2xl border border-dashed border-border bg-slate-900/50 px-4 py-8 text-center">
-          <p className="text-sm text-slate-400">{copy.addPhotos}</p>
+        <div className="mb-6 rounded-2xl border border-dashed border-border bg-[var(--wash)] px-4 py-8 text-center">
+          <p className="text-sm text-muted">{copy.addPhotos}</p>
         </div>
       )}
 
-      {data.description && <p className="text-slate-300 mb-6 leading-relaxed">{data.description}</p>}
+      {data.description && <p className="text-body mb-6 leading-relaxed">{data.description}</p>}
 
       <div className="mb-5">
         {added ? (
           <Link
             href="/?tab=workout"
             className="btn btn-primary w-full !py-3.5"
-            style={{ background: gymColor || "#0060A9", color: "#000" }}
+            style={{ background: gymColor || "#0060A9", color: "#fff" }}
           >
             {copy.added}
           </Link>
@@ -205,7 +193,7 @@ export function MachineGuide({
             type="button"
             onClick={onAddToWorkout}
             className="btn btn-primary w-full !py-3.5"
-            style={{ background: gymColor || "#0060A9", color: "#000" }}
+            style={{ background: gymColor || "#0060A9", color: "#fff" }}
           >
             {copy.addWorkout}
           </button>
@@ -216,8 +204,8 @@ export function MachineGuide({
         <h2 className="font-semibold text-lg mb-3">{copy.steps}</h2>
         <ol className="space-y-3">
           {data.steps.map((step, i) => (
-            <li key={i} className="flex gap-3 text-slate-200">
-              <span className="font-mono text-yellow-300 shrink-0 w-7">{String(i + 1).padStart(2, "0")}</span>
+            <li key={i} className="flex gap-3 text-navy">
+              <span className="font-mono text-[var(--accent)] shrink-0 w-7">{String(i + 1).padStart(2, "0")}</span>
               <span>{step}</span>
             </li>
           ))}
@@ -226,11 +214,11 @@ export function MachineGuide({
 
       {data.tips.length > 0 && (
         <section className="card p-5 mb-4 border-emerald-400/20">
-          <h2 className="font-semibold text-lg mb-3 text-emerald-300">{copy.tips}</h2>
-          <ul className="space-y-2 text-slate-300">
+          <h2 className="font-semibold text-lg mb-3 text-[var(--ok)]">{copy.tips}</h2>
+          <ul className="space-y-2 text-body">
             {data.tips.map((tip, i) => (
               <li key={i} className="flex gap-2">
-                <span className="text-emerald-300">✓</span>
+                <span className="text-[var(--ok)]">✓</span>
                 <span>{tip}</span>
               </li>
             ))}
@@ -240,11 +228,11 @@ export function MachineGuide({
 
       {data.warnings.length > 0 && (
         <section className="card p-5 mb-4 border-rose-400/25">
-          <h2 className="font-semibold text-lg mb-3 text-rose-300">{copy.warnings}</h2>
-          <ul className="space-y-2 text-slate-300">
+          <h2 className="font-semibold text-lg mb-3 text-[var(--danger)]">{copy.warnings}</h2>
+          <ul className="space-y-2 text-body">
             {data.warnings.map((w, i) => (
               <li key={i} className="flex gap-2">
-                <span className="text-rose-300">!</span>
+                <span className="text-[var(--danger)]">!</span>
                 <span>{w}</span>
               </li>
             ))}
@@ -255,7 +243,7 @@ export function MachineGuide({
       <section className="card p-5 mb-6">
         <h2 className="font-semibold mb-3">{copy.report}</h2>
         {status === "sent" ? (
-          <p className="text-emerald-300 text-sm">{copy.thanks}</p>
+          <p className="text-[var(--ok)] text-sm">{copy.thanks}</p>
         ) : (
           <form onSubmit={submitIssue} className="space-y-3">
             <textarea
@@ -264,7 +252,7 @@ export function MachineGuide({
               onChange={(e) => setNote(e.target.value)}
               placeholder={copy.placeholder}
             />
-            {status === "error" && <p className="text-rose-300 text-sm">{copy.error}</p>}
+            {status === "error" && <p className="text-[var(--danger)] text-sm">{copy.error}</p>}
             <button type="submit" className="btn btn-secondary" disabled={status === "sending"}>
               {status === "sending" ? "…" : copy.send}
             </button>

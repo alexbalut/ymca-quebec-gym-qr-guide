@@ -203,7 +203,7 @@ export function WorkoutTracker({ gymSlug, gymColor, machines, lang, onSaved }: P
 
   if (!hydrated || !session) {
     return (
-      <div className="card p-6 text-center text-slate-400 text-sm" aria-busy="true">
+      <div className="card p-6 text-center text-muted text-sm" aria-busy="true">
         …
       </div>
     );
@@ -212,7 +212,7 @@ export function WorkoutTracker({ gymSlug, gymColor, machines, lang, onSaved }: P
   return (
     <div className="space-y-5">
       <div className="flex items-center justify-between gap-3">
-        <h2 className="font-semibold text-slate-200 text-lg">{t.title}</h2>
+        <h2 className="font-semibold text-navy text-lg">{t.title}</h2>
         {session.exercises.length > 0 && (
           <div className="flex flex-wrap gap-2 justify-end">
             <button
@@ -233,7 +233,7 @@ export function WorkoutTracker({ gymSlug, gymColor, machines, lang, onSaved }: P
               type="button"
               onClick={saveToHistory}
               className="btn btn-primary !py-2 !px-3 text-sm"
-              style={{ background: gymColor || "#0060A9", color: "#000" }}
+              style={{ background: gymColor || "#0060A9", color: "#fff" }}
             >
               {t.save}
             </button>
@@ -242,13 +242,13 @@ export function WorkoutTracker({ gymSlug, gymColor, machines, lang, onSaved }: P
       </div>
 
       {flash && (
-        <p className="rounded-xl border border-emerald-400/30 bg-emerald-400/10 px-4 py-3 text-sm text-emerald-200">
+        <p className="rounded-xl border border-emerald-400/30 bg-emerald-400/10 px-4 py-3 text-sm text-[var(--ok)]">
           {flash}
         </p>
       )}
 
       {session.exercises.length === 0 ? (
-        <p className="text-slate-400 text-sm">{t.empty}</p>
+        <p className="text-muted text-sm">{t.empty}</p>
       ) : (
         <ul className="space-y-4">
           {session.exercises.map((ex) => (
@@ -258,19 +258,19 @@ export function WorkoutTracker({ gymSlug, gymColor, machines, lang, onSaved }: P
                   <p className="font-semibold truncate">
                     {lang === "fr" ? ex.nameFr : ex.nameEn}
                   </p>
-                  <p className="text-slate-500 text-sm truncate">
+                  <p className="text-muted text-sm truncate">
                     {lang === "fr" ? ex.nameEn : ex.nameFr}
                   </p>
                   <span className="badge mt-2">{ex.category}</span>
                 </div>
                 <div className="flex flex-col items-end gap-2 shrink-0">
-                  <Link href={`/q/${ex.token}`} className="text-xs text-slate-400 hover:text-yellow-300">
+                  <Link href={`/q/${ex.token}`} className="text-xs text-muted hover:text-[var(--accent)]">
                     {t.guide}
                   </Link>
                   <button
                     type="button"
                     onClick={() => removeExercise(ex.id)}
-                    className="text-xs text-rose-300/90 hover:text-rose-200"
+                    className="text-xs text-[var(--danger)]/90 hover:text-[var(--danger)]"
                   >
                     {t.removeExercise}
                   </button>
@@ -302,16 +302,16 @@ export function WorkoutTracker({ gymSlug, gymColor, machines, lang, onSaved }: P
         type="button"
         onClick={() => setPickerOpen((v) => !v)}
         className="btn btn-primary w-full !py-3.5 text-base"
-        style={{ background: gymColor || "#0060A9", color: "#000" }}
+        style={{ background: gymColor || "#0060A9", color: "#fff" }}
       >
         {pickerOpen ? t.close : t.add}
       </button>
 
       {pickerOpen && (
         <section className="card p-4 space-y-2">
-          <h3 className="font-medium text-slate-200 mb-2">{t.pick}</h3>
+          <h3 className="font-medium text-navy mb-2">{t.pick}</h3>
           {machines.length === 0 ? (
-            <p className="text-sm text-slate-400">{t.noMachines}</p>
+            <p className="text-sm text-muted">{t.noMachines}</p>
           ) : (
             <ul className="space-y-2 max-h-[50vh] overflow-y-auto">
               {machines.map((m) => {
@@ -325,19 +325,19 @@ export function WorkoutTracker({ gymSlug, gymColor, machines, lang, onSaved }: P
                       className={`w-full text-left px-4 py-3.5 rounded-xl border transition flex items-center justify-between gap-3 min-h-[52px] ${
                         taken
                           ? "border-border/50 opacity-50 cursor-not-allowed"
-                          : "border-border hover:border-yellow-400/40 bg-black/30"
+                          : "border-border hover:border-[var(--accent)] bg-[var(--wash)]"
                       }`}
                     >
                       <span className="min-w-0">
                         <span className="font-medium block truncate">
                           {lang === "fr" ? m.nameFr : m.nameEn}
                         </span>
-                        <span className="text-slate-500 text-sm">{m.category}</span>
+                        <span className="text-muted text-sm">{m.category}</span>
                       </span>
                       {taken ? (
-                        <span className="text-xs text-slate-500 shrink-0">{t.inWorkout}</span>
+                        <span className="text-xs text-muted shrink-0">{t.inWorkout}</span>
                       ) : (
-                        <span className="text-yellow-300 text-xl font-bold shrink-0" aria-hidden>
+                        <span className="text-[var(--accent)] text-xl font-bold shrink-0" aria-hidden>
                           +
                         </span>
                       )}
@@ -399,16 +399,16 @@ function StrengthEditor({
 
   return (
     <div className="space-y-3">
-      <p className="text-xs text-slate-500">{t.strengthHint}</p>
+      <p className="text-xs text-muted">{t.strengthHint}</p>
       {sets.length > 0 && (
         <ul className="space-y-2">
           {sets.map((s, i) => (
             <li
               key={s.id}
-              className="flex items-center justify-between gap-3 rounded-xl bg-black/35 border border-border px-3 py-2.5"
+              className="flex items-center justify-between gap-3 rounded-xl bg-[var(--wash)] border border-border px-3 py-2.5"
             >
-              <span className="text-sm text-slate-200">
-                <span className="text-slate-500 mr-2">
+              <span className="text-sm text-navy">
+                <span className="text-muted mr-2">
                   {t.setN} {i + 1}
                 </span>
                 <strong>{s.reps}</strong> {t.reps.toLowerCase()}
@@ -422,7 +422,7 @@ function StrengthEditor({
               <button
                 type="button"
                 onClick={() => onRemoveSet(exercise.id, s.id)}
-                className="text-xs text-slate-400 hover:text-rose-300 min-h-[36px] min-w-[56px]"
+                className="text-xs text-muted hover:text-[var(--danger)] min-h-[36px] min-w-[56px]"
               >
                 {t.removeSet}
               </button>
@@ -446,7 +446,7 @@ function StrengthEditor({
         <label className="block">
           <span className="label">
             {t.weight}{" "}
-            <span className="text-slate-500 font-normal">({t.optional})</span>
+            <span className="text-muted font-normal">({t.optional})</span>
           </span>
           <input
             className="input !py-3 text-base"
@@ -508,9 +508,9 @@ function CardioEditor({
 
   return (
     <div className="space-y-3">
-      <p className="text-xs text-slate-500">{t.cardioHint}</p>
+      <p className="text-xs text-muted">{t.cardioHint}</p>
       {hasLog && (
-        <p className="rounded-xl bg-black/35 border border-border px-3 py-2.5 text-sm text-slate-200">
+        <p className="rounded-xl bg-[var(--wash)] border border-border px-3 py-2.5 text-sm text-navy">
           {String(exercise.minutes ?? 0).padStart(2, "0")}:
           {String(exercise.seconds ?? 0).padStart(2, "0")}
           {exercise.distanceKm != null && (
@@ -549,7 +549,7 @@ function CardioEditor({
         <label className="block">
           <span className="label">
             {t.distance}{" "}
-            <span className="text-slate-500 font-normal">({t.optional})</span>
+            <span className="text-muted font-normal">({t.optional})</span>
           </span>
           <input
             className="input !py-3 text-base"

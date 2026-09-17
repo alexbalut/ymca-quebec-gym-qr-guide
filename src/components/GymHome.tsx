@@ -100,61 +100,60 @@ export function GymHome({ gym, machines }: Props) {
   );
 
   const tabClass = (active: boolean) =>
-    `flex-1 min-h-[48px] px-2 py-2.5 text-sm sm:text-base font-bold rounded-xl transition ${
-      active ? "text-black" : "bg-[#353535] text-neutral-300 hover:text-white"
-    }`;
+    `tab-btn ${active ? "tab-btn-active" : ""}`;
   const tabStyle = (active: boolean): CSSProperties =>
-    active ? { backgroundColor: gym.primaryColor, color: "#000" } : {};
+    active ? { backgroundColor: gym.primaryColor, color: "#fff" } : {};
 
   return (
-    <div className="mx-auto max-w-xl px-4 py-8 w-full flex-1">
+    <div
+      className="mx-auto max-w-xl px-4 py-8 w-full flex-1"
+      style={{ ["--accent" as string]: gym.primaryColor, ["--accent-hover" as string]: gym.primaryColor }}
+    >
       <header className="mb-6">
         <div className="flex items-start justify-between gap-3">
           <div className="flex items-center gap-3 min-w-0">
             <span
-              className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-sm font-bold border"
+              className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-sm font-bold border"
               style={{
-                backgroundColor: `${gym.primaryColor}22`,
+                backgroundColor: `${gym.primaryColor}14`,
                 color: gym.primaryColor,
-                borderColor: `${gym.primaryColor}55`,
+                borderColor: `${gym.primaryColor}33`,
               }}
             >
               {gym.initials || "YM"}
             </span>
             <div className="min-w-0">
-              <p className="text-xs uppercase tracking-wider text-slate-400">{t.welcome}</p>
-              <h1 className="text-2xl sm:text-3xl font-bold tracking-tight truncate">{gym.name}</h1>
-              <p className="text-sm text-neutral-400 mt-1">
+              <p className="text-xs uppercase tracking-wider text-muted">{t.welcome}</p>
+              <h1 className="text-2xl sm:text-3xl font-bold tracking-tight truncate text-navy">{gym.name}</h1>
+              <p className="text-sm text-muted mt-1">
                 {t.brandTagline}
                 {gym.city ? ` · ${gym.city}` : ""}
               </p>
             </div>
           </div>
-          <div className="flex rounded-xl border border-border overflow-hidden text-sm font-semibold shrink-0">
+          <div className="seg shrink-0" role="group" aria-label="Language">
             <button
               type="button"
               onClick={() => setLang("en")}
-              className={`px-2.5 py-1.5 ${lang === "en" ? "text-black" : "bg-[#353535] text-neutral-300"}`}
-              style={lang === "en" ? { backgroundColor: gym.primaryColor } : undefined}
+              className={`seg-btn ${lang === "en" ? "seg-btn-active" : ""}`}
             >
               EN
             </button>
             <button
               type="button"
               onClick={() => setLang("fr")}
-              className={`px-2.5 py-1.5 ${lang === "fr" ? "text-black" : "bg-[#353535] text-neutral-300"}`}
-              style={lang === "fr" ? { backgroundColor: gym.primaryColor } : undefined}
+              className={`seg-btn ${lang === "fr" ? "seg-btn-active" : ""}`}
             >
               FR
             </button>
           </div>
         </div>
         {(mode === "browse" || mode === "workout" || mode === "progress") && (
-          <p className="mt-4 text-slate-300">{t.subtitle}</p>
+          <p className="mt-4 text-body">{t.subtitle}</p>
         )}
       </header>
 
-      <nav className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-6" aria-label="Member navigation">
+      <nav className="tab-bar mb-6 !rounded-2xl flex-wrap sm:flex-nowrap" aria-label="Member navigation">
         <button type="button" onClick={() => go("browse")} className={tabClass(mode === "browse")} style={tabStyle(mode === "browse")}>
           {t.browse}
         </button>
@@ -186,25 +185,25 @@ export function GymHome({ gym, machines }: Props) {
           </div>
 
           <section>
-            <h2 className="font-semibold mb-3 text-slate-200">
+            <h2 className="font-semibold mb-3 text-navy">
               {t.browse}
-              <span className="text-slate-500 font-normal text-sm ml-2">({machines.length})</span>
+              <span className="text-muted font-normal text-sm ml-2">({machines.length})</span>
             </h2>
             {machines.length === 0 ? (
-              <p className="text-slate-400 text-sm">{t.empty}</p>
+              <p className="text-muted text-sm">{t.empty}</p>
             ) : (
               <ul className="space-y-2">
                 {machines.map((m) => (
                   <li key={m.id}>
                     <Link
                       href={`/q/${m.token}`}
-                      className="card px-4 py-3 flex items-center justify-between gap-3 hover:border-yellow-400/40 transition"
+                      className="card px-4 py-3 flex items-center justify-between gap-3 hover:border-[var(--accent)] transition"
                     >
                       <span className="min-w-0">
                         <span className="font-medium block truncate">
                           {lang === "fr" ? m.nameFr : m.nameEn}
                         </span>
-                        <span className="text-slate-500 text-sm truncate block">
+                        <span className="text-muted text-sm truncate block">
                           {lang === "fr" ? m.nameEn : m.nameFr}
                         </span>
                       </span>
@@ -246,7 +245,7 @@ export function GymHome({ gym, machines }: Props) {
           <button
             type="button"
             onClick={() => go("code")}
-            className="mt-4 text-sm text-slate-400 hover:text-yellow-300 w-full text-center"
+            className="mt-4 text-sm text-muted hover:text-[var(--accent)] w-full text-center"
           >
             {t.enterCode}
           </button>
@@ -258,7 +257,7 @@ export function GymHome({ gym, machines }: Props) {
           <button
             type="button"
             onClick={() => go("browse")}
-            className="text-sm text-slate-400 hover:text-yellow-300 mb-4"
+            className="text-sm text-muted hover:text-[var(--accent)] mb-4"
           >
             ← {t.back}
           </button>
@@ -267,8 +266,8 @@ export function GymHome({ gym, machines }: Props) {
         </section>
       )}
 
-      <p className="mt-10 text-center text-xs text-slate-500">
-        <Link href="/admin/login" className="hover:text-slate-300 underline-offset-2 hover:underline">
+      <p className="mt-10 text-center text-xs text-muted">
+        <Link href="/admin/login" className="hover:text-body underline-offset-2 hover:underline">
           {t.staff}
         </Link>
       </p>
@@ -312,7 +311,7 @@ function CodeEntry() {
 
   return (
     <form onSubmit={go} className="card p-5 space-y-3">
-      <p className="text-sm text-slate-400">Paste a QR link, or type the machine token from the sticker.</p>
+      <p className="text-sm text-muted">Paste a QR link, or type the machine token from the sticker.</p>
       <input
         className="input"
         value={manual}
@@ -320,7 +319,7 @@ function CodeEntry() {
         placeholder="https://…/q/abc123 or token"
         autoFocus
       />
-      {error && <p className="text-sm text-amber-200">{error}</p>}
+      {error && <p className="text-sm text-[#8a6116]">{error}</p>}
       <button type="submit" className="btn btn-primary w-full">
         Open guide
       </button>

@@ -35,10 +35,10 @@ export default async function HomePage() {
     return (
       <main className="mx-auto max-w-xl px-4 py-16 text-center">
         <h1 className="text-2xl font-bold mb-3">No gym seeded</h1>
-        <p className="text-slate-400 mb-6">
-          Run <code className="text-yellow-300">npm run seed</code> to load YMCA Notre-Dame-de-Grâce.
+        <p className="text-muted mb-6">
+          Run <code className="text-[var(--accent)]">npm run seed</code> to load YMCA Notre-Dame-de-Grâce.
         </p>
-        <a href="/admin/login" className="text-sm text-slate-500 hover:text-slate-300 underline">
+        <a href="/admin/login" className="text-sm text-muted hover:text-body underline">
           Staff login
         </a>
       </main>
@@ -49,7 +49,7 @@ export default async function HomePage() {
     <main className="flex-1 w-full flex flex-col">
       <Suspense
         fallback={
-          <div className="mx-auto max-w-xl px-4 py-8 text-slate-400 text-sm">Loading…</div>
+          <div className="mx-auto max-w-xl px-4 py-8 text-muted text-sm">Loading…</div>
         }
       >
         <GymHome

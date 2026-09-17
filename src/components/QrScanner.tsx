@@ -88,21 +88,21 @@ export function QrScanner() {
   return (
     <div className="space-y-5">
       <div className="card p-4 overflow-hidden">
-        <div id={regionId} className="rounded-lg overflow-hidden min-h-[260px] bg-slate-950" />
+        <div id={regionId} className="rounded-lg overflow-hidden min-h-[260px] bg-[var(--wash)]" />
         {scanning && !error && (
-          <p className="text-center text-sm text-slate-400 mt-3">Point at a machine QR code…</p>
+          <p className="text-center text-sm text-muted mt-3">Point at a machine QR code…</p>
         )}
       </div>
 
       {error && (
-        <div className="rounded-xl border border-amber-400/30 bg-amber-400/10 px-4 py-3 text-sm text-amber-100">
+        <div className="rounded-xl border border-[#f5d78e] bg-[#fff8e6] px-4 py-3 text-sm text-[#8a6116]">
           {error}
         </div>
       )}
 
       <form onSubmit={goManual} className="card p-5 space-y-3">
         <h2 className="font-semibold">Manual code / URL</h2>
-        <p className="text-sm text-slate-400">
+        <p className="text-sm text-muted">
           Paste a QR link, or type the machine token from the sticker.
         </p>
         <input

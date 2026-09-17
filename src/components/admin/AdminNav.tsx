@@ -22,13 +22,13 @@ export function AdminNav({ gymName, userName }: { gymName: string; userName: str
   }
 
   return (
-    <header className="no-print border-b border-border bg-[#070b14]/80 backdrop-blur sticky top-0 z-40">
+    <header className="no-print border-b border-border bg-white sticky top-0 z-40">
       <div className="mx-auto max-w-6xl px-4 py-3 flex flex-wrap items-center justify-between gap-3">
         <div>
           <Link href="/admin" className="font-semibold">
-            {gymName} <span className="text-yellow-300">Admin</span>
+            {gymName} <span className="text-[var(--accent)]">Admin</span>
           </Link>
-          <p className="text-xs text-slate-400">{userName}</p>
+          <p className="text-xs text-muted">{userName}</p>
         </div>
         <nav className="flex flex-wrap items-center gap-2 text-sm">
           {links.map((l) => (

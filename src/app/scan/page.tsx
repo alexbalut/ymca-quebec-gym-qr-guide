@@ -12,11 +12,11 @@ export default function ScanPage() {
       <SiteHeader />
       <main className="mx-auto max-w-xl px-4 py-8 flex-1 w-full">
         <div className="mb-6">
-          <Link href="/" className="text-sm text-slate-400 hover:text-yellow-300">
+          <Link href="/" className="text-sm text-muted hover:text-[var(--accent)]">
             ← Back to machines
           </Link>
           <h1 className="text-3xl font-bold mt-3 mb-2">Scan machine QR</h1>
-          <p className="text-slate-400">
+          <p className="text-muted">
             Point your camera at a machine sticker, or enter a code / URL below.
           </p>
         </div>
